@@ -1,0 +1,141 @@
+
+
+#perimeter {
+    border: 5px solid rgb(225, 225, 225);
+    border-radius: 20px;
+    box-shadow: -2px 5px 15px black;
+    width: 300px;
+    margin: 2px auto;
+    font-family: Poppins, system;
+}
+
+#bird {
+    width:10x;
+    height: 50px; 
+    cursor: pointer;
+}
+
+#bird:hover {
+    width:15x;
+    height: 70px;   
+}
+
+.accueil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(map.jpg);
+    background-size: contain;
+    height: 200px;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    
+
+}
+
+h1 {
+    margin-bottom: 1px;
+    color: white;
+    text-shadow: 
+        2px 2px 15px black,
+        -4px 2px 15px rgb(0, 26, 255);
+    
+}
+
+#hint {
+    margin-top: 1px;
+    color: white;
+    font-size: 12px;
+    text-shadow: 
+        2px 2px 15px black,
+        -4px 2px 15px rgb(0, 26, 255);
+    font-family: Poppins, system;
+}
+
+.directives {
+    color: rgba(0, 72, 255, 0.871);
+    font-weight: 800;
+    font-family: inherit;
+    margin: 3px auto;
+}
+
+#translationZone {
+    width: 280px;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid rgb(49, 49, 49);
+    border-radius: 5px;
+}
+
+button {
+    margin-bottom: 10px;
+    font-family: inherit;
+    cursor: pointer;
+    width: 250px;
+    background-color: rgb(5, 57, 160);
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 15px auto;
+}
+button:hover {
+    background-color: rgb(26, 85, 202);
+    font-size: 14px;
+}
+
+#input {
+    font-family: inherit;
+    height: 75px;
+    background-color: rgb(225, 235, 255);
+    border: none;
+    width: 250px;
+    border-radius: 5px;
+    text-align: justify;
+    overflow: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 5px 5px;
+}
+
+select {
+    font-family: inherit;
+    background-color: rgb(225, 235, 255);
+    border: none;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 5px auto ;
+}
+
+#translatedTextZone {
+    border: none;
+    width: 250px;
+    border-radius: 205px;
+    text-align: center;
+    margin: 5px auto ;
+    padding: 20px auto;
+    
+}
+
+#translatedText {
+    font-family: inherit;
+    background-color: rgb(225, 235, 255);
+    font-size: 13px;
+    text-align: justify;
+    margin: 5px auto ;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+    
+#transcriptionButtons {
+    display: flex;
+    justify-content: space-between;
+    width: 250px; /* Même largeur que les autres éléments */
+    margin: 10px auto; /* Centrer l'ensemble */
+}
+
+#transcriptionButtons button {
+    width: 120px; /* Ajuster la largeur pour que les boutons tiennent côte à côte */
+    font-size: small;
+}

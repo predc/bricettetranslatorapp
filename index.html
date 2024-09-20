@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+    <title>Bricette Translator App</title>
+</head>
+<body>
+    <div id="perimeter">
+        <div class="accueil">
+            <img id="bird" src="bird.png" alt="Un oiseau qui sourit">
+            <div class="titre">
+                <h1>Bricette</h1>
+                <p id="hint">La traduction parfaite <br> en tout moment</p>
+            </div>
+        </div>
+        <div id="translationZone">
+            <select name="Languages" id="inputLanguage">
+                <option value="en">Anglais</option>
+                <option value="es">Espagnol</option>
+                <option value="fr">Français</option>
+                <option value="pt">Portugais</option>
+                <option value="de">Allemand</option>
+            </select>
+            <p class="directives">Texte à traduire</p>
+            <textarea id="input" type="text" placeholder="Insérez votre texte ici"></textarea>
+
+            <!-- Nouveau bouton pour la transcription vocale -->
+            <div id="transcriptionButtons">
+                <button id="startBtn">Transcrire Audio</button>
+                <button id="stopBtn" disabled>Arrêter</button>
+            </div>
+            
+
+            <p class="directives">Texte Traduit</p>
+            <select name="Languages" id="targetLanguage">
+                <option value="en">Anglais</option>
+                <option value="es">Espagnol</option>
+                <option value="zh">Chinois</option>
+                <option value="hi">Hindi</option>
+                <option value="ar">Arabe</option>
+                <option value="fr">Français</option>
+                <option value="ru">Russe</option>
+                <option value="pt">Portugais</option>
+                <option value="de">Allemand</option>
+                <option value="ja">Japonais</option>
+            </select>
+            <div id="translatedTextZone">
+                <p id="translatedText"></p>
+            </div>
+            <button id="translateButton">Traduire</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+    <script>
+        // Vérification de la disponibilité de l'API Web Speech
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            console.log("API Web Speech supportée");
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'fr-FR'; // Langue française
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+
+            const startBtn = document.getElementById('startBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const inputText = document.getElementById('input');
+
+            // Démarrer la reconnaissance vocale
+            startBtn.addEventListener('click', () => {
+                recognition.start();
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+                inputText.placeholder = "Écoute en cours...";
+            });
+
+            // Arrêter la reconnaissance vocale
+            stopBtn.addEventListener('click', () => {
+                recognition.stop();
+                startBtn.disabled = false;
+                stopBtn.disabled = true;
+                inputText.placeholder = "Insérez votre texte ici";
+            });
+
+            // Gérer le résultat de la reconnaissance vocale
+            recognition.addEventListener('result', (event) => {
+                const transcript = event.results[0][0].transcript;
+                inputText.value = transcript;
+                console.log(`Texte transcrit : ${transcript}`);
+            });
+
+            // Gérer les erreurs
+            recognition.addEventListener('error', (event) => {
+                console.error("Erreur de reconnaissance vocale :", event.error);
+                inputText.placeholder = `Erreur : ${event.error}`;
+            });
+
+        } else {
+            console.error("API Web Speech non supportée dans ce navigateur.");
+            document.getElementById('input').placeholder = "API Web Speech non supportée.";
+        }
+    </script>
+</body>
+</html>
